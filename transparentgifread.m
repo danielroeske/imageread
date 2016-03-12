@@ -7,7 +7,14 @@ function [image,map,transparent]=transparentgifread(filename)
 %   TRANSPARENT - Index in image used for transparent pixels
 %
 %   Please note the offset of 1 between colormap and unsigned integer
-%   images. 
+%   images. Example code to replace transparency with green:
+%   
+%   [stack,map,transparent]=transparentgifread('tr.gif');
+%   map(transparent+1,:)=[0,1,0] %offset 1 because uint8 starts at 0 but indices at 1
+%   for frame=1:size(stack,ndims(stack))
+%    imshow(stack(:,:,frame),map);
+%    pause(1/25);
+%   end
 %
 %   Call without output arguments for a visual demonstration. Transparency
 %   is replaced with green color.
